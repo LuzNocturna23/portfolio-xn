@@ -1,0 +1,39 @@
+{
+  "metadata": {
+    "empresa": "Tech Solutions SAS",
+    "nit": "900.123.456-7",
+    "periodo": "2025-11",
+    "resumen": {
+      "total_empleados": 2,
+      "nomina_bruta": 8000000.0,
+      "total_impuestos": 1200000.0,
+      "nomina_neta": 6800000.0
+    }
+  },
+  "nominas": [
+    {
+      "cedula": "123456789",
+      "nombre": "Ana García",
+      "cargo": "Desarrolladora Senior",
+      "salario_bruto": 4500000.0,
+      "impuestos": 675000.0,
+      "salario_neto": 3825000.0,
+      "banco": "Bancolombia",
+      "cuenta": "",
+      "periodo": "2025-11"
+    },
+    {
+      "cedula": "987654321",
+      "nombre": "Carlos Rodríguez",
+      "cargo": "Analista de Datos",
+      "salario_bruto": 3500000.0,
+      "impuestos": 525000.0,
+      "salario_neto": 2975000.0,
+      "banco": "Davivienda",
+      "cuenta": "",
+      "periodo": "2025-11"
+    }
+  ],
+  "fecha_generacion": "2025-11-25T11:47:38.877991",
+  "sistema": "Enjambre XN - Servicio de Nóminas"
+}

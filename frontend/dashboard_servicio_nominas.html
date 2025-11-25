@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>💰 Servicio de Nóminas - Enjambre XN</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="assets/styles.css">
+    <style>
+        .servicio-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 25px;
+            margin: 20px 0;
+            border-left: 4px solid #4CAF50;
+        }
+        
+        .empresa-info {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        
+        .nomina-resultado {
+            background: rgba(76, 175, 80, 0.1);
+            border: 1px solid #4CAF50;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 15px 0;
+        }
+        
+        .empleado-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px;
+            margin: 5px 0;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 8px;
+        }
+        
+        button {
+            background: #4CAF50;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            margin: 5px;
+            font-size: 16px;
+        }
+        
+        button:hover {
+            background: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>💰 Servicio de Nóminas - Enjambre XN</h1>
+            <p>Generación automática de nóminas para empresas</p>
+        </div>
+        
+        <div class="servicio-card">
+            <h3>🏢 Empresas Registradas</h3>
+            <div id="lista-empresas">
+                <p>Cargando empresas...</p>
+            </div>
+        </div>
+        
+        <div class="servicio-card">
+            <h3>🚀 Acciones Rápidas</h3>
+            <button onclick="registrarEmpresaEjemplo()">➕ Registrar Empresa Nueva</button>
+            <button onclick="generarNominaEjemplo()">🧮 Generar Nómina Mensual</button>
+            <button onclick="verEstadisticas()">📊 Ver Estadísticas</button>
+        </div>
+        
+        <div class="servicio-card">
+            <h3>📋 Última Nómina Generada</h3>
+            <div id="ultima-nomina">
+                <p>Ejecuta "Generar Nómina" para ver resultados</p>
+            </div>
+        </div>
+        
+        <div class="servicio-card">
+            <h3>🎯 Servicios Incluidos</h3>
+            <div class="grid-container">
+                <div class="metric-card">
+                    <h4>📝 Registro Empresas</h4>
+                    <p>Registro completo con NIT y datos fiscales</p>
+                </div>
+                <div class="metric-card">
+                    <h4>👥 Gestión Empleados</h4>
+                    <p>Administración de nómina y datos bancarios</p>
+                </div>
+                <div class="metric-card">
+                    <h4>🧮 Cálculo Automático</h4>
+                    <p>Nóminas, impuestos, deducciones automáticas</p>
+                </div>
+                <div class="metric-card">
+                    <h4>📊 Reportes Ejecutivos</h4>
+                    <p>Dashboards y análisis inteligentes</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const API_BASE = 'http://127.0.0.1:5000/api';
+        
+        // Cargar empresas al iniciar
+        async function cargarEmpresas() {
+            try {
+                const response = await fetch(`${API_BASE}/servicio/nominas/empresas`);
+                const data = await response.json();
+                
+                let html = '';
+                if (data.empresas && data.empresas.length > 0) {
+                    data.empresas.forEach(empresa => {
+                        html += `
+                            <div class="empresa-info">
+                                <strong>${empresa.nombre}</strong> (NIT: ${empresa.nit})<br>
+                                <small>Empleados: ${empresa.total_empleados} | Estado: ${empresa.estado}</small>
+                            </div>
+                        `;
+                    });
+                } else {
+                    html = '<p>No hay empresas registradas</p>';
+                }
+                
+                document.getElementById('lista-empresas').innerHTML = html;
+            } catch (error) {
+                console.error('Error cargando empresas:', error);
+            }
+        }
+        
+        // Registrar empresa de ejemplo
+        async function registrarEmpresaEjemplo() {
+            try {
+                const response = await fetch(`${API_BASE}/servicio/nominas/registrar_empresa`, {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({
+                        nombre: `Empresa ${new Date().getTime()}`,
+                        nit: `900.${Math.random().toString().slice(2,11)}`,
+                        email: `empresa${new Date().getTime()}@ejemplo.com`
+                    })
+                });
+                
+                const result = await response.json();
+                alert(result.mensaje || 'Empresa registrada');
+                cargarEmpresas();
+            } catch (error) {
+                console.error('Error registrando empresa:', error);
+            }
+        }
+        
+        // Generar nómina de ejemplo
+        async function generarNominaEjemplo() {
+            try {
+                const response = await fetch(`${API_BASE}/servicio/nominas/generar/1?periodo=2025-11`);
+                const data = await response.json();
+                
+                if (data.resultado) {
+                    const nomina = data.resultado;
+                    let html = `
+                        <div class="nomina-resultado">
+                            <h4>🏢 ${nomina.empresa} - ${nomina.periodo}</h4>
+                            <p><strong>Total Empleados:</strong> ${nomina.total_empleados}</p>
+                            <p><strong>Nómina Bruta:</strong> $${nomina.nomina_bruta.toLocaleString()}</p>
+                            <p><strong>Total Impuestos:</strong> $${nomina.total_impuestos.toLocaleString()}</p>
+                            <p><strong>Nómina Neta:</strong> $${nomina.nomina_neta.toLocaleString()}</p>
+                            
+                            <h5>👥 Detalle Empleados:</h5>
+                    `;
+                    
+                    nomina.nominas_detalladas.forEach(emp => {
+                        html += `
+                            <div class="empleado-item">
+                                <div>
+                                    <strong>${emp.nombre}</strong><br>
+                                    <small>${emp.cargo} - ${emp.cedula}</small>
+                                </div>
+                                <div style="text-align: right;">
+                                    <strong>$${emp.salario_neto.toLocaleString()}</strong><br>
+                                    <small>Bruto: $${emp.salario_bruto.toLocaleString()}</small>
+                                </div>
+                            </div>
+                        `;
+                    });
+                    
+                    html += '</div>';
+                    document.getElementById('ultima-nomina').innerHTML = html;
+                }
+            } catch (error) {
+                console.error('Error generando nómina:', error);
+            }
+        }
+        
+        async function verEstadisticas() {
+            try {
+                const response = await fetch(`${API_BASE}/servicio/nominas/empresas`);
+                const data = await response.json();
+                
+                alert(`Estadísticas del servicio:\n\nTotal Empresas: ${data.total_empresas}\nTotal Empleados: ${data.empresas.reduce((sum, emp) => sum + emp.total_empleados, 0)}`);
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        }
+        
+        // Cargar datos al iniciar
+        document.addEventListener('DOMContentLoaded', cargarEmpresas);
+    </script>
+</body>
+</html>

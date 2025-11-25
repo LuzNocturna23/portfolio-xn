@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>💰 Nóminas Inteligentes - Enjambre XN</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>💰 Nóminas Inteligentes - Enjambre XN</h1>
+            <p>6 aliados especializados analizando tu nómina en tiempo real</p>
+        </div>
+        
+        <div class="grid-container">
+            <!-- Estado del Enjambre de Nóminas -->
+            <div class="metric-card">
+                <h3>🤖 Enjambre de Nóminas</h3>
+                <div id="estado-enjambre-nominas">
+                    <p>Cargando aliados especializados...</p>
+                </div>
+            </div>
+            
+            <!-- Análisis en Tiempo Real -->
+            <div class="metric-card">
+                <h3>📊 Análisis Inteligente</h3>
+                <button onclick="analizarNomina()">🔍 Analizar Nómina Actual</button>
+                <div id="resultado-analisis" style="margin-top: 15px;"></div>
+            </div>
+            
+            <!-- Aliados Especializados -->
+            <div class="metric-card">
+                <h3>👥 Aliados Especializados</h3>
+                <div id="lista-aliados-nominas">
+                    <p>Cargando especialistas...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        async function cargarEnjambreNominas() {
+            try {
+                const respuesta = await fetch('http://127.0.0.1:5000/api/enjambre/nominas/estado');
+                const datos = await respuesta.json();
+                
+                document.getElementById('estado-enjambre-nominas').innerHTML = `
+                    <p>Aliados activos: ${datos.enjambre_nominas_xn.aliados_activos}/${datos.enjambre_nominas_xn.total_aliados}</p>
+                    <p>Especialidades: ${datos.enjambre_nominas_xn.especialidades.join(', ')}</p>
+                `;
+                
+                // Mostrar aliados
+                let aliadosHTML = '';
+                for (const [id, aliado] of Object.entries(datos.aliados)) {
+                    aliadosHTML += `
+                        <div style="margin: 10px 0; padding: 10px; background: rgba(255,255,255,0.05); border-radius: 8px;">
+                            <strong>${aliado.nombre}</strong><br>
+                            <small>${aliado.especialidad}</small>
+                        </div>
+                    `;
+                }
+                document.getElementById('lista-aliados-nominas').innerHTML = aliadosHTML;
+                
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        }
+        
+        async function analizarNomina() {
+            try {
+                const respuesta = await fetch('http://127.0.0.1:5000/api/enjambre/nominas/analizar', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({
+                        empresa: "Mi Empresa",
+                        total_empleados: 24,
+                        nomina_bruta: 125000000,
+                        periodo: new Date().toISOString().slice(0,7)
+                    })
+                });
+                
+                const resultado = await respuesta.json();
+                
+                let analisisHTML = '<h4>📋 Resultados del Análisis:</h4>';
+                for (const [aliado, analisis] of Object.entries(resultado.analisis_enjambre.analisis_aliados)) {
+                    analisisHTML += `
+                        <div style="margin: 10px 0; padding: 10px; background: rgba(255,255,255,0.05); border-radius: 8px;">
+                            <strong>${aliado.replace('_', ' ').toUpperCase()}</strong><br>
+                            ${JSON.stringify(analisis, null, 2).replace(/\n/g, '<br>').replace(/ /g, '&nbsp;')}
+                        </div>
+                    `;
+                }
+                
+                document.getElementById('resultado-analisis').innerHTML = analisisHTML;
+                
+            } catch (error) {
+                console.error('Error analizando nómina:', error);
+            }
+        }
+        
+        // Cargar al iniciar
+        document.addEventListener('DOMContentLoaded', cargarEnjambreNominas);
+    </script>
+</body>
+</html>

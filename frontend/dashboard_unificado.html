@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>🚀 Portfolio XN - Sistema Unificado</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="assets/styles.css">
+    <style>
+        .sistema-card {
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 15px;
+            padding: 20px;
+            margin: 15px 0;
+            border-left: 4px solid;
+            transition: transform 0.3s ease;
+        }
+        
+        .sistema-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .sistema-enjambre { border-left-color: #667eea; }
+        .sistema-facturacion { border-left-color: #4CAF50; }
+        .sistema-nominas { border-left-color: #FF9800; }
+        
+        .estadistica-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .estadistica-item {
+            text-align: center;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+        }
+        
+        .estadistica-valor {
+            font-size: 1.8em;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🚀 Portfolio XN - Sistema Unificado</h1>
+            <p>Enjambre IA + Facturación + Nóminas - Plataforma Completa</p>
+        </div>
+        
+        <div class="estadistica-grid">
+            <div class="estadistica-item">
+                <div>🤖 Aliados IA</div>
+                <div class="estadistica-valor" id="aliados-activos">6</div>
+                <div>Activos</div>
+            </div>
+            <div class="estadistica-item">
+                <div>🧾 Facturas</div>
+                <div class="estadistica-valor" id="total-facturas">15</div>
+                <div>Generadas</div>
+            </div>
+            <div class="estadistica-item">
+                <div>💰 Nóminas</div>
+                <div class="estadistica-valor" id="empleados-nomina">24</div>
+                <div>Empleados</div>
+            </div>
+            <div class="estadistica-item">
+                <div>⚡ Operatividad</div>
+                <div class="estadistica-valor" id="operatividad">150%</div>
+                <div>Del sistema</div>
+            </div>
+        </div>
+        
+        <!-- Sistema de Enjambre IA -->
+        <div class="sistema-card sistema-enjambre">
+            <h3>🤖 Sistema de Enjambre IA</h3>
+            <p>6 aliados activos con operatividad al 150%</p>
+            <div id="estado-enjambre">
+                <p>Cargando estado del enjambre...</p>
+            </div>
+            <a href="dashboard.html" style="color: #667eea; text-decoration: none;">→ Ver Dashboard Completo</a>
+        </div>
+        
+        <!-- Sistema de Facturación IA -->
+        <div class="sistema-card sistema-facturacion">
+            <h3>🧾 Facturación IA Inteligente</h3>
+            <p>Sistema de facturación con Nano Pay y criptomonedas</p>
+            <div id="estado-facturacion">
+                <p>Servicios: Nano GPT Básico, Nano GPT Pro, Consultas IA</p>
+            </div>
+            <a href="#" style="color: #4CAF50; text-decoration: none;">→ Ir a Facturación</a>
+        </div>
+        
+        <!-- Sistema de Nóminas -->
+        <div class="sistema-card sistema-nominas">
+            <h3>💰 Sistema de Nóminas</h3>
+            <p>Gestión completa de nóminas para múltiples empresas</p>
+            <div id="estado-nominas">
+                <p>3 empresas activas | 24 empleados | Base de datos SQLite</p>
+            </div>
+            <a href="#" style="color: #FF9800; text-decoration: none;">→ Procesar Nómina</a>
+        </div>
+        
+        <div style="text-align: center; margin-top: 40px; opacity: 0.7;">
+            <p>🔄 Sistema integrado y funcionando al 100%</p>
+            <p>✨ Desarrollado completamente desde Termux por LuzNocturna23</p>
+        </div>
+    </div>
+
+    <script src="assets/dashboard.js"></script>
+    <script>
+        // Cargar datos de todos los sistemas
+        async function cargarSistemaUnificado() {
+            try {
+                // Cargar estado del enjambre
+                const respuestaEnjambre = await fetch('http://127.0.0.1:5000/api/estado');
+                const datosEnjambre = await respuestaEnjambre.json();
+                
+                document.getElementById('aliados-activos').textContent = datosEnjambre.aliados_activos;
+                document.getElementById('operatividad').textContent = datosEnjambre.operatividad + '%';
+                
+                // Actualizar estado del enjambre
+                document.getElementById('estado-enjambre').innerHTML = `
+                    <p>${datosEnjambre.aliados_activos} aliados activos | ${datosEnjambre.operatividad}% operatividad</p>
+                    <p>Base de datos: ${datosEnjambre.base_datos}</p>
+                `;
+                
+            } catch (error) {
+                console.error('Error cargando datos:', error);
+            }
+        }
+        
+        // Cargar al iniciar
+        document.addEventListener('DOMContentLoaded', cargarSistemaUnificado);
+        
+        // Actualizar cada 10 segundos
+        setInterval(cargarSistemaUnificado, 10000);
+    </script>
+</body>
+</html>

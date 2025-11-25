@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>💳 Wallets para Empleados - Enjambre XN</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        :root {
+            --primary: #4CAF50;
+            --secondary: #2196F3;
+            --accent: #FF9800;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .hero-section {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 30px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+        }
+        
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .feature-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 25px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: transform 0.3s ease;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .wallet-demo {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 15px;
+            padding: 30px;
+            margin: 20px 0;
+            border: 2px solid var(--accent);
+        }
+        
+        .wallet-screen {
+            background: #1a1a1a;
+            border-radius: 20px;
+            padding: 20px;
+            margin: 20px auto;
+            max-width: 300px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+        
+        .wallet-balance {
+            font-size: 2em;
+            font-weight: bold;
+            color: var(--accent);
+            margin: 20px 0;
+        }
+        
+        .benefits-list {
+            text-align: left;
+            margin: 20px 0;
+        }
+        
+        .benefit-item {
+            padding: 10px;
+            margin: 5px 0;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .benefit-item::before {
+            content: "✅";
+            margin-right: 10px;
+        }
+        
+        button {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 10px;
+            cursor: pointer;
+            margin: 10px;
+            font-size: 16px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        
+        button:hover {
+            background: var(--secondary);
+            transform: scale(1.05);
+        }
+        
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin: 30px 0;
+        }
+        
+        .testimonial {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>💳 WALLET NANO PARA EMPLEADOS</h1>
+            <p>Revoluciona el pago de nóminas con wallets digitales instantáneas</p>
+        </div>
+        
+        <div class="hero-section">
+            <h2>🚀 Tu empleado recibe su salario EN SEGUNDOS</h2>
+            <p>Sin bancos, sin esperas, sin complicaciones</p>
+            
+            <div class="wallet-demo">
+                <h3>📱 ASÍ VE TU EMPLEADO SU WALLET:</h3>
+                <div class="wallet-screen">
+                    <div style="text-align: center;">
+                        <h4>💰 Wallet Nano</h4>
+                        <div class="wallet-balance">$3,825,000</div>
+                        <p>Ana García</p>
+                        <div style="margin: 20px 0;">
+                            <button style="background: var(--secondary); width: 100%;">📤 Enviar</button>
+                            <button style="background: var(--primary); width: 100%; margin-top: 10px;">📥 Recibir</button>
+                        </div>
+                        <div style="font-size: 0.8em; opacity: 0.7;">
+                            Última transacción: Hoy 10:30 AM<br>
+                            Nómina Tech Solutions SAS
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="feature-grid">
+            <div class="feature-card">
+                <h3>⚡ INSTANTÁNEO</h3>
+                <p>El salario llega en segundos a la wallet del empleado</p>
+            </div>
+            
+            <div class="feature-card">
+                <h3>💸 SIN COMISIONES</h3>
+                <p>Sin costos ocultos para empresa ni empleados</p>
+            </div>
+            
+            <div class="feature-card">
+                <h3>🔒 SEGURO</h3>
+                <p>Tecnología blockchain y encriptación militar</p>
+            </div>
+            
+            <div class="feature-card">
+                <h3>📱 MÓVIL FIRST</h3>
+                <p>App disponible para iOS y Android</p>
+            </div>
+        </div>
+        
+        <div style="background: rgba(255, 255, 255, 0.1); border-radius: 15px; padding: 30px; margin: 30px 0;">
+            <h3>🎯 BENEFICIOS PARA TU EMPRESA</h3>
+            <div class="benefits-list">
+                <div class="benefit-item">Reducción del 80% en costos de nómina</div>
+                <div class="benefit-item">Eliminación de cheques físicos</div>
+                <div class="benefit-item">Reportes automáticos en tiempo real</div>
+                <div class="benefit-item">Empleados más satisfechos y productivos</div>
+                <div class="benefit-item">Integración con tu sistema actual</div>
+                <div class="benefit-item">Soporte 24/7 del enjambre XN</div>
+            </div>
+        </div>
+        
+        <div class="cta-buttons">
+            <button onclick="probarWalletDemo()">🔄 Probar Demo Wallet</button>
+            <button onclick="integrarConNominas()">🏢 Integrar con Nóminas</button>
+            <button onclick="verPlanPrecios()">💳 Ver Planes y Precios</button>
+        </div>
+        
+        <div class="testimonial">
+            <p>"Implementamos las wallets nano y nuestros empleados están encantados. 
+            Reciben su salario al instante y la empresa ahorró $2M mensuales en costos bancarios."</p>
+            <p><strong>- María Rodríguez, Gerente Financiera Tech Solutions</strong></p>
+        </div>
+        
+        <div style="text-align: center; margin-top: 40px;">
+            <h3>🚀 ¿CÓMO FUNCIONA?</h3>
+            <div style="display: flex; justify-content: center; flex-wrap: wrap; gap: 20px; margin: 20px 0;">
+                <div style="flex: 1; min-width: 200px;">
+                    <h4>1. 📝 Registro</h4>
+                    <p>Empleados descargan la app Wallet Nano</p>
+                </div>
+                <div style="flex: 1; min-width: 200px;">
+                    <h4>2. 🏢 Integración</h4>
+                    <p>Conectamos con tu sistema de nóminas</p>
+                </div>
+                <div style="flex: 1; min-width: 200px;">
+                    <h4>3. 💰 Pago</h4>
+                    <p>Salarios llegan instantáneamente</p>
+                </div>
+                <div style="flex: 1; min-width: 200px;">
+                    <h4>4. 📊 Control</h4>
+                    <p>Dashboard completo de transacciones</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function probarWalletDemo() {
+            alert('🚀 DEMO WALLET NANO\n\n' +
+                  'Nombre: Ana García\n' +
+                  'Saldo: $3,825,000\n' +
+                  'Última transacción: Nómina Tech Solutions\n\n' +
+                  '¡Así de simple ven tus empleados su dinero!');
+        }
+        
+        function integrarConNominas() {
+            alert('🏢 INTEGRACIÓN CON NÓMINAS\n\n' +
+                  '1. Nos compartes tu lista de empleados\n' +
+                  '2. Instalamos el módulo wallet en tu sistema\n' +
+                  '3. Configuramos pagos automáticos\n' +
+                  '4. ¡Listo! Pagos instantáneos activados\n\n' +
+                  'Tiempo implementación: 48 horas');
+        }
+        
+        function verPlanPrecios() {
+            alert('💳 PLANES WALLET NANO\n\n' +
+                  '🌟 PLAN BÁSICO:\n' +
+                  '· $5,000 por empleado/mes\n' +
+                  '· Wallets ilimitadas\n' +
+                  '· Soporte estándar\n\n' +
+                  '🚀 PLAN EMPRESA:\n' +
+                  '· $3,000 por empleado/mes\n' +
+                  '· Dashboard avanzado\n' +
+                  '· API personalizada\n' +
+                  '· Soporte prioritario 24/7\n\n' +
+                  '💎 PLAN ENJAMBRE:\n' +
+                  '· $1,500 por empleado/mes\n' +
+                  '· Todos los features\n' +
+                  '· Onboarding dedicado\n' +
+                  '· Análisis predictivo');
+        }
+        
+        // Efectos visuales
+        document.addEventListener('DOMContentLoaded', function() {
+            const cards = document.querySelectorAll('.feature-card');
+            cards.forEach((card, index) => {
+                card.style.animationDelay = `${index * 0.1}s`;
+            });
+        });
+    </script>
+</body>
+</html>

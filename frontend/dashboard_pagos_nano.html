@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>₿ Pagos en NANO - Enjambre XN</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        :root {
+            --nano-green: #4CAF50;
+            --nano-blue: #2196F3;
+            --nano-orange: #FF9800;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
+            color: white;
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .nano-hero {
+            background: rgba(0, 0, 0, 0.6);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 30px;
+            text-align: center;
+            border: 2px solid var(--nano-green);
+        }
+        
+        .nano-logo {
+            font-size: 4em;
+            margin: 20px 0;
+        }
+        
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .feature-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 25px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: transform 0.3s ease;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .nano-demo {
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 15px;
+            padding: 30px;
+            margin: 20px 0;
+            border: 2px solid var(--nano-orange);
+        }
+        
+        .wallet-address {
+            background: #2d3748;
+            padding: 15px;
+            border-radius: 10px;
+            font-family: monospace;
+            word-break: break-all;
+            margin: 15px 0;
+            border: 1px solid var(--nano-green);
+        }
+        
+        .benefits-list {
+            text-align: left;
+            margin: 20px 0;
+        }
+        
+        .benefit-item {
+            padding: 12px;
+            margin: 8px 0;
+            background: rgba(76, 175, 80, 0.2);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            border-left: 4px solid var(--nano-green);
+        }
+        
+        .benefit-item::before {
+            content: "⚡";
+            margin-right: 12px;
+            font-size: 1.2em;
+        }
+        
+        button {
+            background: var(--nano-green);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 10px;
+            cursor: pointer;
+            margin: 10px;
+            font-size: 16px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        
+        button:hover {
+            background: var(--nano-blue);
+            transform: scale(1.05);
+        }
+        
+        .conversion-box {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            text-align: center;
+        }
+        
+        .price-ticker {
+            font-size: 2em;
+            font-weight: bold;
+            color: var(--nano-orange);
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="nano-logo">₿</div>
+            <h1>PAGA NÓMINAS EN NANO (XNO)</h1>
+            <p>La criptomoneda instantánea, sin comisiones y ecológica</p>
+        </div>
+        
+        <div class="nano-hero">
+            <h2>🚀 TRANSFORMAMOS TU NÓMINA CON NANO</h2>
+            <p>De pagos lentos y costosos a <strong>instantáneos, gratuitos y globales</strong></p>
+            
+            <div class="conversion-box">
+                <h3>💱 CONVERSIÓN EN TIEMPO REAL</h3>
+                <div class="price-ticker">1 NANO = $1.20 USD</div>
+                <p>Cotización actualizada del mercado</p>
+            </div>
+        </div>
+        
+        <div class="feature-grid">
+            <div class="feature-card">
+                <h3>⚡ INSTANTÁNEO</h3>
+                <p>Transacciones en <strong>menos de 1 segundo</strong></p>
+                <small>Nano confirma más rápido que Visa/Mastercard</small>
+            </div>
+            
+            <div class="feature-card">
+                <h3>🎯 CERO COMISIONES</h3>
+                <p><strong>Sin fees de transacción</strong></p>
+                <small>Paga $1M de nómina por exactamente $1M</small>
+            </div>
+            
+            <div class="feature-card">
+                <h3>🌱 ECOLÓGICO</h3>
+                <p>Consumo energético mínimo</p>
+                <small>0.000112 kWh por transacción vs 707 kWh de Bitcoin</small>
+            </div>
+        </div>
+        
+        <div class="nano-demo">
+            <h3>📱 ASÍ RECIBE TU EMPLEADO SU NÓMINA EN NANO:</h3>
+            
+            <div style="background: #1a1a1a; border-radius: 15px; padding: 25px; margin: 20px auto; max-width: 400px;">
+                <div style="text-align: center;">
+                    <h4 style="color: var(--nano-green);">💰 Natrium Wallet</h4>
+                    <div style="font-size: 0.9em; opacity: 0.8;">Ana García</div>
+                    
+                    <div style="font-size: 2em; font-weight: bold; margin: 20px 0; color: var(--nano-orange);">
+                        3,187.5 NANO
+                    </div>
+                    <div style="font-size: 0.9em; opacity: 0.7;">$3,825,000 COP</div>
+                    
+                    <div class="wallet-address">
+                        nano_1empleadoabc1234567890xyz...
+                    </div>
+                    
+                    <div style="margin: 20px 0;">
+                        <button style="background: var(--nano-green); width: 100%;">📤 Enviar</button>
+                        <button style="background: var(--nano-blue); width: 100%; margin-top: 10px;">📥 Recibir</button>
+                    </div>
+                    
+                    <div style="font-size: 0.8em; opacity: 0.7;">
+                        ⚡ Transacción confirmada: 0.4s<br>
+                        💰 Comisión: $0
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div style="background: rgba(255, 255, 255, 0.1); border-radius: 15px; padding: 30px; margin: 30px 0;">
+            <h3>🎯 ¿POR QUÉ NANO PARA NÓMINAS?</h3>
+            <div class="benefits-list">
+                <div class="benefit-item">
+                    <strong>Para la Empresa:</strong> Ahorras 2-5% en costos bancarios y transferencias
+                </div>
+                <div class="benefit-item">
+                    <strong>Para Empleados:</strong> Reciben el 100% de su salario, al instante
+                </div>
+                <div class="benefit-item">
+                    <strong>Internacional:</strong> Empleados en otros países reciben igual de rápido
+                </div>
+                <div class="benefit-item">
+                    <strong>Sin Horarios:</strong> Pagos 24/7, incluso fines de semana y festivos
+                </div>
+                <div class="benefit-item">
+                    <strong>Transparente:</strong> Todas las transacciones son verificables en blockchain
+                </div>
+            </div>
+        </div>
+        
+        <div style="text-align: center; margin: 40px 0;">
+            <h3>🚀 CÓMO FUNCIONA EN 3 PASOS</h3>
+            <div style="display: flex; justify-content: center; flex-wrap: wrap; gap: 30px; margin: 30px 0;">
+                <div style="flex: 1; min-width: 250px;">
+                    <div style="font-size: 3em;">1️⃣</div>
+                    <h4>EMPLEADOS INSTALAN NATRIUM</h4>
+                    <p>Cada empleado descarga la wallet Natrium (iOS/Android) y comparte su dirección Nano</p>
+                </div>
+                <div style="flex: 1; min-width: 250px;">
+                    <div style="font-size: 3em;">2️⃣</div>
+                    <h4>CONVIERTES PESOS A NANO</h4>
+                    <p>Nosotros convertimos automáticamente COP → USD → NANO al mejor precio del mercado</p>
+                </div>
+                <div style="flex: 1; min-width: 250px;">
+                    <div style="font-size: 3em;">3️⃣</div>
+                    <h4>ENVÍAS EN SEGUNDOS</h4>
+                    <p>La nómina completa se envía en una sola transacción, confirmada en menos de 1 segundo</p>
+                </div>
+            </div>
+        </div>
+        
+        <div style="text-align: center; margin: 40px 0;">
+            <button onclick="calcularAhorro()">💰 Calcular Mi Ahorro</button>
+            <button onclick="probarDemoNano()">⚡ Probar Demo Nano</button>
+            <button onclick="empezarAhora()">🚀 Empezar Ahora</button>
+        </div>
+        
+        <div style="background: rgba(0, 0, 0, 0.5); border-radius: 15px; padding: 25px; margin: 30px 0;">
+            <h3 style="text-align: center;">📊 EJEMPLO REAL: NÓMINA EN NANO</h3>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 20px 0;">
+                <div style="background: rgba(255, 0, 0, 0.2); padding: 15px; border-radius: 10px;">
+                    <h4>❌ MÉTODO TRADICIONAL</h4>
+                    <p><strong>Nómina: $8,000,000 COP</strong></p>
+                    <p>• Comisión bancaria: $160,000 (2%)</p>
+                    <p>• Costo transferencias: $80,000</p>
+                    <p>• Tiempo: 1-3 días hábiles</p>
+                    <p>• Empleados reciben: $7,760,000</p>
+                </div>
+                <div style="background: rgba(76, 175, 80, 0.2); padding: 15px; border-radius: 10px;">
+                    <h4>✅ CON NANO</h4>
+                    <p><strong>Nómina: $8,000,000 COP</strong></p>
+                    <p>• Comisión Nano: $0 (0%)</p>
+                    <p>• Fee conversión: $40,000 (0.5%)</p>
+                    <p>• Tiempo: 1 segundo</p>
+                    <p>• Empleados reciben: $7,960,000</p>
+                </div>
+            </div>
+            <div style="text-align: center; font-size: 1.2em; margin-top: 15px;">
+                <strong>✅ AHORRO MENSUAL: $200,000 + 3 días de tiempo</strong>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function calcularAhorro() {
+            const nomina = prompt('💵 ¿Cuál es el valor total de tu nómina mensual (COP)?', '8000000');
+            if (nomina) {
+                const comisionBancaria = nomina * 0.02;
+                const costosExtra = nomina * 0.01;
+                const totalTradicional = comisionBancaria + costosExtra;
+                
+                const feeNano = nomina * 0.005;
+                const ahorro = totalTradicional - feeNano;
+                
+                alert(`💰 ANÁLISIS DE AHORRO CON NANO:\n\n` +
+                      `Nómina mensual: $${parseInt(nomina).toLocaleString()} COP\n\n` +
+                      `❌ COSTOS ACTUALES:\n` +
+                      `• Comisiones bancarias: $${comisionBancaria.toLocaleString()}\n` +
+                      `• Otros costos: $${costosExtra.toLocaleString()}\n` +
+                      `• TOTAL PÉRDIDA: $${totalTradicional.toLocaleString()}\n\n` +
+                      `✅ CON NANO:\n` +
+                      `• Fee conversión: $${feeNano.toLocaleString()}\n` +
+                      `• Comisión transacción: $0\n\n` +
+                      `🎯 AHORRO ESTIMADO: $${ahorro.toLocaleString()} COP/mes\n` +
+                      `💡 En un año: $${(ahorro * 12).toLocaleString()} COP`);
+            }
+        }
+        
+        function probarDemoNano() {
+            alert('⚡ DEMO PAGO NANO INSTANTÁNEO\n\n' +
+                  'De: Empresa Tech Solutions SAS\n' +
+                  'Para: Ana García\n' +
+                  'Monto: 3,187.5 NANO ($3,825,000 COP)\n\n' +
+                  '⏱️ Transacción confirmada: 0.4 segundos\n' +
+                  '💰 Comisión: $0\n' +
+                  '🔗 Block: 18,452,117 (verificado)\n\n' +
+                  '¡Así de rápido y económico es pagar con Nano!');
+        }
+        
+        function empezarAhora() {
+            alert('🚀 INICIAR CON NANO\n\n' +
+                  '1. 📧 Agenda una demostración personalizada\n' +
+                  '2. 👥 Registra a tus empleados con sus wallets Nano\n' +
+                  '3. 💰 Configura conversión automática COP → Nano\n' +
+                  '4. ⚡ Realiza tu primer pago de nómina en segundos\n\n' +
+                  '¡Tiempo de implementación: 48 horas!\n\n' +
+                  '¿Listo para revolucionar tus pagos de nómina?');
+        }
+        
+        // Simular precio actual de Nano
+        function actualizarPrecioNano() {
+            const precios = [1.15, 1.20, 1.25, 1.18, 1.22];
+            const precio = precios[Math.floor(Math.random() * precios.length)];
+            document.querySelector('.price-ticker').textContent = `1 NANO = $${precio} USD`;
+        }
+        
+        // Actualizar precio cada 10 segundos (simulación)
+        setInterval(actualizarPrecioNano, 10000);
+    </script>
+</body>
+</html>

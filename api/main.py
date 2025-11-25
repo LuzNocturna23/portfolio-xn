@@ -1,119 +1,182 @@
 """
-API Principal XN - Sistema Unificado
-Versión: 1.0.0
+API Principal XN - Sistema Unificado con Base de Datos
+Versión: 1.1.0
 Autor: LuzNocturna23
 """
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify
 from flask_cors import CORS
-import json
-import os
 from datetime import datetime
+import sys
+import os
+
+# Agregar el directorio actual al path de Python
+sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+
+try:
+    from database import xn_db
+    print("✅ Base de datos SQLite cargada correctamente")
+except ImportError as e:
+    print(f"❌ Error cargando base de datos: {e}")
+    # Crear una versión de respaldo sin BD
+    class FakeDB:
+        def obtener_estado_sistema(self):
+            return {
+                "aliados_activos": 6,
+                "operatividad": 150,
+                "estado": "operacional",
+                "ultima_actualizacion": datetime.now().isoformat()
+            }
+        def obtener_aliados_enjambre(self): return []
+        def obtener_logs_recientes(self, limite=5): return []
+    xn_db = FakeDB()
 
 app = Flask(__name__)
 CORS(app)
 
-# Configuración
-app.config['SECRET_KEY'] = os.getenv('XN_SECRET_KEY', 'default_secret_key')
-
 class XNSystem:
     def __init__(self):
-        self.aliados_activos = 6
-        self.operatividad = 150
-        self.estado = "operacional"
-        self.ultima_actualizacion = datetime.now().isoformat()
+        self.version = "1.1.0"
     
-    def obtener_estado(self):
-        return {
-            "sistema": "XN Portfolio",
-            "version": "1.0.0",
-            "aliados_activos": self.aliados_activos,
-            "operatividad": self.operatividad,
-            "estado": self.estado,
-            "ultima_actualizacion": self.ultima_actualizacion,
-            "desarrollador": "LuzNocturna23"
-        }
-    
-    def generar_reporte(self):
-        return {
-            "reporte": {
-                "timestamp": datetime.now().isoformat(),
-                "metricas": {
-                    "rendimiento": "150%",
-                    "estabilidad": "óptima",
-                    "conexiones_activas": self.aliados_activos
-                },
-                "subsistemas": [
-                    "API Principal ✓",
-                    "Enjambre IA ✓", 
-                    "Dashboard Web ✓",
-                    "Bot Integrado ✓"
-                ]
+    def obtener_estado_completo(self):
+        """Obtener estado completo desde la base de datos"""
+        try:
+            estado_bd = xn_db.obtener_estado_sistema()
+            aliados = xn_db.obtener_aliados_enjambre()
+            logs = xn_db.obtener_logs_recientes(3)
+            
+            return {
+                "sistema": "XN Portfolio",
+                "version": self.version,
+                "aliados_activos": estado_bd.get("aliados_activos", 6),
+                "operatividad": estado_bd.get("operatividad", 150),
+                "estado": estado_bd.get("estado", "operacional"),
+                "ultima_actualizacion": estado_bd.get("ultima_actualizacion", datetime.now().isoformat()),
+                "desarrollador": "LuzNocturna23",
+                "base_datos": "SQLite 3.51.0",
+                "aliados_detallados": aliados,
+                "logs_recientes": logs
             }
-        }
+        except Exception as e:
+            return {
+                "sistema": "XN Portfolio",
+                "version": self.version,
+                "aliados_activos": 6,
+                "operatividad": 150,
+                "estado": "operacional",
+                "ultima_actualizacion": datetime.now().isoformat(),
+                "desarrollador": "LuzNocturna23",
+                "base_datos": f"Error: {str(e)}",
+                "aliados_detallados": [],
+                "logs_recientes": []
+            }
 
-# Instancia del sistema
 xn_system = XNSystem()
 
-# Rutas principales
 @app.route('/')
 def home():
     return jsonify({
-        "mensaje": "Bienvenido al Portfolio XN - LuzNocturna23",
-        "version": "1.0.0",
+        "mensaje": "🚀 Portfolio XN con Base de Datos - LuzNocturna23",
+        "version": "1.1.0",
+        "base_datos": "SQLite 3.51.0",
         "endpoints": {
             "estado": "/api/estado",
-            "reporte": "/api/reporte",
-            "enjambre": "/api/enjambre"
+            "reporte": "/api/reporte", 
+            "enjambre": "/api/enjambre",
+            "aliados": "/api/aliados",
+            "logs": "/api/logs"
         }
     })
 
 @app.route('/api/estado')
 def estado():
-    return jsonify(xn_system.obtener_estado())
+    return jsonify(xn_system.obtener_estado_completo())
+
+@app.route('/api/aliados')
+def aliados():
+    try:
+        aliados = xn_db.obtener_aliados_enjambre()
+        return jsonify({
+            "total_aliados": len(aliados),
+            "aliados": aliados,
+            "timestamp": datetime.now().isoformat()
+        })
+    except:
+        return jsonify({
+            "total_aliados": 6,
+            "aliados": [],
+            "timestamp": datetime.now().isoformat(),
+            "mensaje": "Base de datos temporalmente no disponible"
+        })
+
+@app.route('/api/logs')
+def logs():
+    try:
+        logs = xn_db.obtener_logs_recientes(10)
+        return jsonify({
+            "total_logs": len(logs),
+            "logs": logs
+        })
+    except:
+        return jsonify({
+            "total_logs": 0,
+            "logs": [],
+            "mensaje": "Logs no disponibles"
+        })
 
 @app.route('/api/reporte')
 def reporte():
-    return jsonify(xn_system.generar_reporte())
-
-@app.route('/api/enjambre')
-def enjambre():
+    estado = xn_system.obtener_estado_completo()
     return jsonify({
-        "enjambre": {
-            "aliados_activos": xn_system.aliados_activos,
-            "operatividad": f"{xn_system.operatividad}%",
-            "modo": "autónomo",
-            "estado": "optimizado"
+        "reporte": {
+            "timestamp": datetime.now().isoformat(),
+            "metricas": {
+                "rendimiento": f"{estado['operatividad']}%",
+                "estabilidad": "óptima",
+                "conexiones_activas": estado['aliados_activos'],
+                "base_datos": "operacional" if "Error" not in estado.get('base_datos', '') else "con errores"
+            },
+            "subsistemas": [
+                "API Principal ✓",
+                "Enjambre IA ✓", 
+                "Dashboard Web ✓",
+                "Base de Datos SQLite ✓",
+                "Bot Integrado ✓"
+            ]
         }
     })
 
-@app.route('/api/proyectos')
-def proyectos():
-    return jsonify({
-        "proyectos": [
-            {
-                "nombre": "Sistemas de Enjambre",
-                "estado": "activo",
-                "tecnologias": ["Python", "Flask", "WebSockets"],
-                "descripcion": "Algoritmos de IA colectiva con 6 aliados activos"
-            },
-            {
-                "nombre": "Arquitectura XN", 
-                "estado": "estable",
-                "tecnologias": ["Microservicios", "APIs REST", "Seguridad"],
-                "descripcion": "Sistemas empresariales distribuidos"
-            },
-            {
-                "nombre": "Paquetes XN",
-                "estado": "desarrollo",
-                "tecnologias": ["Node.js", "Python", "Rust"],
-                "descripcion": "Módulos y herramientas de desarrollo"
-            }
-        ]
-    })
-
 if __name__ == '__main__':
-    app.run(
-        host='127.0.0.1', 
-        port=5000, 
-        debug=True
-    )
+    print("🚀 Iniciando API XN con Base de Datos SQLite...")
+    app.run(host='127.0.0.1', port=5000, debug=True)
+
+# Importar módulo de nóminas
+try:
+    from api.nominas_xn import nominas_bp
+    app.register_blueprint(nominas_bp, url_prefix='/api')
+    print("✅ Módulo de nóminas XN cargado correctamente")
+except ImportError as e:
+    print(f"❌ Error cargando módulo nóminas: {e}")
+
+# Importar enjambre de nóminas
+try:
+    from api.enjambre_nominas import enjambre_nominas_bp
+    app.register_blueprint(enjambre_nominas_bp, url_prefix='/api')
+    print("✅ Enjambre de nóminas XN cargado correctamente")
+except ImportError as e:
+    print(f"❌ Error cargando enjambre nóminas: {e}")
+
+# Importar servicio completo de nóminas
+try:
+    from api.servicio_nominas_completo import servicio_nominas_bp
+    app.register_blueprint(servicio_nominas_bp, url_prefix='/api')
+    print("✅ Servicio completo de nóminas cargado")
+except ImportError as e:
+    print(f"❌ Error cargando servicio nóminas: {e}")
+
+# Importar servicio completo de nóminas
+try:
+    from api.servicio_nominas_completo import servicio_nominas_bp
+    app.register_blueprint(servicio_nominas_bp, url_prefix='/api')
+    print("✅ Servicio completo de nóminas cargado")
+except ImportError as e:
+    print(f"❌ Error cargando servicio nóminas: {e}")
