@@ -1,0 +1,14 @@
+/* 🐝 Enjambre Tech - Paleta Corporativa */
+:root {
+  --swarm-yellow: #FFD700;    /* Amarillo enjambre */
+  --swarm-black: #1A1A1A;     /* Negro profesional */
+  --swarm-gray: #2D3748;      /* Gris tecnológico */
+  --nano-green: #00D26A;      /* Verde Nano */
+  --ai-purple: #8B5CF6;       /* Purple IA */
+  --tech-blue: #3B82F6;       /* Azul tecnológico */
+}
+
+/* Clases de utilidad */
+.swarm-bg { background: linear-gradient(135deg, var(--swarm-yellow), var(--nano-green)); }
+.tech-bg { background: var(--swarm-black); }
+.nano-bg { background: var(--nano-green); }

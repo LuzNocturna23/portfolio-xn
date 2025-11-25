@@ -3,8 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🚀 Portfolio XN - Sistema de Nóminas</title>
+    <title>🐝 Enjambre Tech - Soluciones Empresariales con Nano</title>
     <style>
+        :root {
+            --swarm-yellow: #FFD700;
+            --swarm-black: #1A1A1A;
+            --nano-green: #00D26A;
+            --ai-purple: #8B5CF6;
+        }
+        
         * {
             margin: 0;
             padding: 0;
@@ -13,172 +20,301 @@
         
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: var(--swarm-black);
             color: white;
+            line-height: 1.6;
+        }
+        
+        .hero {
+            background: linear-gradient(135deg, var(--swarm-black), #2D3748);
             min-height: 100vh;
-            padding: 20px;
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             text-align: center;
+            position: relative;
+            overflow: hidden;
         }
         
-        .header {
-            margin: 40px 0;
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 80%, var(--swarm-yellow) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, var(--nano-green) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, var(--ai-purple) 0%, transparent 50%);
+            opacity: 0.1;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            padding: 0 20px;
         }
         
         .logo {
-            font-size: 4em;
-            margin-bottom: 20px;
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+        
+        .company-name {
+            font-size: 3.5rem;
+            font-weight: bold;
+            background: linear-gradient(45deg, var(--swarm-yellow), var(--nano-green));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1rem;
+        }
+        
+        .tagline {
+            font-size: 1.5rem;
+            opacity: 0.9;
+            margin-bottom: 2rem;
         }
         
         .cta-buttons {
             display: flex;
+            gap: 20px;
             justify-content: center;
             flex-wrap: wrap;
-            gap: 15px;
-            margin: 30px 0;
+            margin: 2rem 0;
         }
         
         .btn {
-            background: rgba(255, 255, 255, 0.2);
-            color: white;
             padding: 15px 30px;
-            border-radius: 10px;
+            border-radius: 50px;
             text-decoration: none;
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            transition: all 0.3s ease;
             font-weight: bold;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+        
+        .btn-primary {
+            background: var(--swarm-yellow);
+            color: var(--swarm-black);
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            color: var(--swarm-yellow);
+            border-color: var(--swarm-yellow);
         }
         
         .btn:hover {
-            background: rgba(255, 255, 255, 0.3);
-            transform: translateY(-2px);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(255, 215, 0, 0.3);
         }
         
-        .feature-grid {
+        .features {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-            margin: 40px 0;
+            gap: 30px;
+            padding: 80px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
         }
         
         .feature-card {
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
             border-radius: 15px;
-            padding: 25px;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--swarm-yellow);
+        }
+        
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
         }
         
         .stats {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
+            background: linear-gradient(135deg, var(--swarm-black), #000);
+            padding: 60px 20px;
+            text-align: center;
+        }
+        
+        .stat-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 30px;
-            margin: 40px 0;
+            max-width: 1000px;
+            margin: 0 auto;
         }
         
         .stat-item {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 20px;
-            border-radius: 10px;
-            min-width: 150px;
+            text-align: center;
         }
         
-        .github-link {
-            margin-top: 40px;
-            padding: 20px;
-            background: rgba(0, 0, 0, 0.3);
-            border-radius: 10px;
+        .stat-number {
+            font-size: 3rem;
+            font-weight: bold;
+            background: linear-gradient(45deg, var(--swarm-yellow), var(--nano-green));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .footer {
+            background: #000;
+            padding: 40px 20px;
+            text-align: center;
+            border-top: 1px solid rgba(255, 215, 0, 0.3);
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <div class="logo">💼</div>
-            <h1>Portfolio XN</h1>
-            <p>Sistema Completo de Nóminas con Pagos en Nano</p>
+    <section class="hero">
+        <div class="hero-content">
+            <div class="logo">🐝⚡</div>
+            <h1 class="company-name">ENJAMBRE TECH</h1>
+            <p class="tagline">Inteligencia Colectiva, Resultados Exponenciales</p>
+            <p>Revolucionamos los sistemas empresariales con tecnología de enjambre, pagos instantáneos en Nano e IA descentralizada.</p>
+            
+            <div class="cta-buttons">
+                <a href="dashboard_servicio_nominas.html" class="btn btn-primary">🚀 Probar Sistema</a>
+                <a href="#features" class="btn btn-secondary">📊 Ver Soluciones</a>
+                <a href="herramienta_github_cli.html" class="btn btn-secondary">🔧 GitHub CLI</a>
+            </div>
         </div>
+    </section>
 
-        <div class="stats">
+    <section id="features" class="features">
+        <div class="feature-card">
+            <div class="feature-icon">🏢</div>
+            <h3>Sistema de Nóminas</h3>
+            <p>Gestión completa de nóminas con cálculo automático de impuestos y reportes ejecutivos.</p>
+        </div>
+        
+        <div class="feature-card">
+            <div class="feature-icon">⚡</div>
+            <h3>Pagos en Nano</h3>
+            <p>Transacciones instantáneas sin comisiones usando la criptomoneda ecológica Nano.</p>
+        </div>
+        
+        <div class="feature-card">
+            <div class="feature-icon">💳</div>
+            <h3>Wallets Digitales</h3>
+            <p>Wallets integradas para empleados con control total y acceso móvil.</p>
+        </div>
+        
+        <div class="feature-card">
+            <div class="feature-icon">🧠</div>
+            <h3>IA Empresarial</h3>
+            <p>Análisis predictivo y recomendaciones automáticas para optimizar recursos.</p>
+        </div>
+        
+        <div class="feature-card">
+            <div class="feature-icon">🔧</div>
+            <h3>GitHub CLI</h3>
+            <p>Herramientas desarrolladas internamente para optimizar flujos de trabajo.</p>
+        </div>
+        
+        <div class="feature-card">
+            <div class="feature-icon">🌍</div>
+            <h3>Global & Local</h3>
+            <p>Soluciones que funcionan tanto para empresas locales como internacionales.</p>
+        </div>
+    </section>
+
+    <section class="stats">
+        <h2 style="margin-bottom: 3rem; font-size: 2.5rem;">En Cifras</h2>
+        <div class="stat-grid">
             <div class="stat-item">
-                <h3>🏢</h3>
-                <p>2 Empresas</p>
+                <div class="stat-number">2</div>
+                <p>Empresas Activas</p>
             </div>
             <div class="stat-item">
-                <h3>👥</h3>
-                <p>6 Empleados</p>
+                <div class="stat-number">6</div>
+                <p>Empleados Gestionados</p>
             </div>
             <div class="stat-item">
-                <h3>💰</h3>
-                <p>$8M Nómina</p>
+                <div class="stat-number">$8M</div>
+                <p>Nómina Procesada</p>
             </div>
             <div class="stat-item">
-                <h3>⚡</h3>
-                <p>Pagos Nano</p>
+                <div class="stat-number">0%</div>
+                <p>Comisiones Nano</p>
             </div>
         </div>
+    </section>
 
-        <div class="cta-buttons">
-            <a href="dashboard_servicio_nominas.html" class="btn">🏢 Dashboard Nóminas</a>
-            <a href="dashboard_pagos_nano.html" class="btn">⚡ Pagos en Nano</a>
-            <a href="dashboard_wallets_empleados.html" class="btn">💳 Wallets Digitales</a>
-            <a href="dashboard_nominas_inteligentes.html" class="btn">🧠 Analytics IA</a>
-        </div>
-
-        <div class="feature-grid">
-            <div class="feature-card">
-                <h3>🚀 Instantáneo</h3>
-                <p>Genera nóminas en segundos con cálculo automático de impuestos</p>
-            </div>
-            <div class="feature-card">
-                <h3>💰 Sin Comisiones</h3>
-                <p>Paga en Nano: 0% de comisiones vs 2-5% bancario tradicional</p>
-            </div>
-            <div class="feature-card">
-                <h3>🌍 Global</h3>
-                <p>Empleados en cualquier país reciben al instante</p>
-            </div>
-            <div class="feature-card">
-                <h3>🔒 Seguro</h3>
-                <p>Base de datos SQLite y API RESTful segura</p>
-            </div>
-        </div>
-
-        <div class="github-link">
-            <h3>📂 Repositorio GitHub</h3>
-            <p>Todo el código fuente disponible públicamente</p>
-            <a href="https://github.com/LuzNocturna23/portfolio-xn" class="btn" style="margin-top: 15px;">
-                🔗 Ver en GitHub
-            </a>
-        </div>
-
-        <div style="margin-top: 40px; opacity: 0.8;">
-            <p><strong>✨ Características técnicas:</strong></p>
-            <p>Python + Flask | SQLite | HTML5/CSS3/JS | Nano (XNO) | GitHub Pages</p>
-        </div>
-    </div>
+    <footer class="footer">
+        <p>&copy; 2024 <strong>Enjambre Tech</strong>. Todos los derechos reservados.</p>
+        <p style="margin-top: 1rem; opacity: 0.7;">
+            Innovando desde GitHub • 
+            <a href="https://github.com/LuzNocturna23/portfolio-xn" style="color: var(--swarm-yellow);">Ver Código</a> • 
+            hello@enjambre.tech
+        </p>
+    </footer>
 
     <script>
-        // Efectos interactivos simples
-        document.addEventListener('DOMContentLoaded', function() {
-            const cards = document.querySelectorAll('.feature-card');
-            cards.forEach((card, index) => {
-                card.style.animationDelay = `${index * 0.1}s`;
-                card.style.opacity = '0';
-                card.style.transform = 'translateY(20px)';
-                
-                setTimeout(() => {
-                    card.style.transition = 'all 0.5s ease';
-                    card.style.opacity = '1';
-                    card.style.transform = 'translateY(0)';
-                }, 500 + (index * 100));
+        // Efectos de aparición
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
             });
+        }, observerOptions);
+
+        // Aplicar a feature cards
+        document.querySelectorAll('.feature-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
+            card.style.transition = 'all 0.6s ease';
+            observer.observe(card);
         });
+
+        // Efecto de partículas simples (opcional)
+        function createParticle() {
+            const particle = document.createElement('div');
+            particle.style.position = 'fixed';
+            particle.style.width = '2px';
+            particle.style.height = '2px';
+            particle.style.background = 'rgba(255, 215, 0, 0.5)';
+            particle.style.borderRadius = '50%';
+            particle.style.pointerEvents = 'none';
+            particle.style.left = Math.random() * 100 + 'vw';
+            particle.style.top = '0';
+            particle.style.animation = `fall ${Math.random() * 3 + 2}s linear forwards`;
+            
+            document.body.appendChild(particle);
+            
+            setTimeout(() => {
+                particle.remove();
+            }, 5000);
+        }
+
+        // Agregar estilo para animación de partículas
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes fall {
+                to {
+                    transform: translateY(100vh) rotate(360deg);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Crear algunas partículas
+        setInterval(createParticle, 100);
     </script>
 </body>
 </html>

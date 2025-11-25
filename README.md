@@ -268,3 +268,19 @@ github-projects template "Sistema Nóminas XN"
     </div>
 </body>
 </html>
+
+## 🏢 Identidad Corporativa
+
+**Empresa:** Enjambre Tech  
+**Eslogan:** "Inteligencia Colectiva, Resultados Exponenciales"  
+**Especialidad:** Sistemas de nóminas con pagos en Nano y soluciones tech disruptivas
+
+### 🎨 Marca
+- **Colores:** Amarillo Enjambre (#FFD700) + Negro Tech (#1A1A1A)
+- **Personalidad:** Innovador, Confiable, Disruptivo
+- **Valores:** Velocidad, Colaboración, Transparencia, Sostenibilidad
+
+### 🌐 Presencia Digital
+- **Landing Corporativa:** [Enjambre Tech](https://luznocturna23.github.io/portfolio-xn/)
+- **Sistema Nóminas:** [Dashboard](https://luznocturna23.github.io/portfolio-xn/dashboard_servicio_nominas.html)
+- **GitHub:** [Portfolio](https://github.com/LuzNocturna23/portfolio-xn)
