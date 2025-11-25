@@ -1,0 +1,20 @@
+{
+    "portfolio": {
+        "name": "Portfolio XN",
+        "version": "1.0.0",
+        "author": "LuzNocturna23",
+        "description": "Sistema de portfolio profesional integrado"
+    },
+    "systems": {
+        "total_repositories": 9,
+        "active_systems": 5,
+        "api_endpoint": "http://127.0.0.1:5000",
+        "github_profile": "https://github.com/LuzNocturna23"
+    },
+    "features": {
+        "real_time_api": true,
+        "interactive_dashboard": true,
+        "mobile_development": true,
+        "professional_docs": true
+    }
+}
