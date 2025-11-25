@@ -1,0 +1,23 @@
+
+🎯 PROYECTO GITHUB: Sistema de Nóminas XN
+
+Sistema completo de nóminas con pagos en Nano
+
+📋 COLUMNAS A CREAR EN GITHUB:
+- '📋 Backlog'
+- '🔄 En Progreso'
+- '✅ Completado'
+
+🎫 TARJETAS PARA AGREGAR:
+
+📍 EN '🔄 En Progreso':
+   - '📱 App móvil para empleados' - Interfaces móviles y wallets Nano
+
+📍 EN '✅ Completado':
+   - '🏢 Backend API Flask completo' - 15+ endpoints, base de datos SQLite
+   - '💼 Sistema de nóminas automático' - 2 empresas, 6 empleados, cálculo impuestos 15%
+   - '🌐 5 Dashboards frontend' - Interfaces modernas y responsive
+   - '⚡ Módulo pagos en Nano' - Conversión COP→Nano, transacciones instantáneas
+   - '🚀 Despliegue GitHub Pages' - Demo en vivo funcionando
+
+🔗 URL PARA CREAR: https://github.com/users/LuzNocturna23/projects/new

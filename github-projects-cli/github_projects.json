@@ -1,0 +1,13 @@
+[
+  {
+    "name": "Sistema de N\u00f3minas XN",
+    "description": "Sistema completo de n\u00f3minas con pagos en Nano",
+    "columns": [
+      "\ud83d\udccb Backlog",
+      "\ud83d\udd04 En Progreso",
+      "\u2705 Completado"
+    ],
+    "created_at": "2025-11-25T12:32:53.187679",
+    "status": "planned"
+  }
+]

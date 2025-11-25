@@ -1,0 +1,50 @@
+[
+  {
+    "project": "Sistema de N\u00f3minas XN",
+    "title": "\ud83c\udfe2 Backend API Flask completo",
+    "description": "15+ endpoints, base de datos SQLite",
+    "column": "\u2705 Completado",
+    "created_at": "2025-11-25T12:32:54.498964",
+    "labels": []
+  },
+  {
+    "project": "Sistema de N\u00f3minas XN",
+    "title": "\ud83d\udcbc Sistema de n\u00f3minas autom\u00e1tico",
+    "description": "2 empresas, 6 empleados, c\u00e1lculo impuestos 15%",
+    "column": "\u2705 Completado",
+    "created_at": "2025-11-25T12:32:55.795109",
+    "labels": []
+  },
+  {
+    "project": "Sistema de N\u00f3minas XN",
+    "title": "\ud83c\udf10 5 Dashboards frontend",
+    "description": "Interfaces modernas y responsive",
+    "column": "\u2705 Completado",
+    "created_at": "2025-11-25T12:32:57.131549",
+    "labels": []
+  },
+  {
+    "project": "Sistema de N\u00f3minas XN",
+    "title": "\u26a1 M\u00f3dulo pagos en Nano",
+    "description": "Conversi\u00f3n COP\u2192Nano, transacciones instant\u00e1neas",
+    "column": "\u2705 Completado",
+    "created_at": "2025-11-25T12:32:58.464280",
+    "labels": []
+  },
+  {
+    "project": "Sistema de N\u00f3minas XN",
+    "title": "\ud83d\ude80 Despliegue GitHub Pages",
+    "description": "Demo en vivo funcionando",
+    "column": "\u2705 Completado",
+    "created_at": "2025-11-25T12:32:59.767240",
+    "labels": []
+  },
+  {
+    "project": "Sistema de N\u00f3minas XN",
+    "title": "\ud83d\udcf1 App m\u00f3vil para empleados",
+    "description": "Interfaces m\u00f3viles y wallets Nano",
+    "column": "\ud83d\udd04 En Progreso",
+    "created_at": "2025-11-25T12:33:01.067064",
+    "labels": []
+  }
+]
