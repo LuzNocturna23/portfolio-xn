@@ -1,0 +1,44 @@
+name: Test Build
+
+on:
+  push:
+    branches: [ gh-pages ]
+  pull_request:
+    branches: [ gh-pages ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Verify structure
+      run: |
+        echo "📁 Verificando estructura del proyecto..."
+        ls -la
+        echo "Frontend files:"
+        ls -la frontend/ || echo "No frontend directory"
+        echo "API files:"
+        ls -la api/ || echo "No api directory"
+        
+    - name: Check HTML files
+      run: |
+        if [ -d "frontend" ]; then
+          echo "🔍 Verificando archivos HTML..."
+          find frontend -name "*.html" | head -10
+        else
+          echo "❌ No se encuentra directorio frontend"
+          exit 1
+        fi
+        
+    - name: Simple Python check
+      run: |
+        if [ -d "api" ]; then
+          echo "🐍 Verificando archivos Python..."
+          python --version
+          find api -name "*.py" | head -5
+        else
+          echo "⚠️ No hay archivos Python para verificar"
+        fi
