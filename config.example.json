@@ -16,10 +16,6 @@
     "modo": "autonomo",
     "reporte_automatico": true
   },
-  "database": {
-    "type": "sqlite",
-    "filename": "xn_system.db"
-  },
   "logs": {
     "level": "INFO",
     "file": "xn_system.log"
