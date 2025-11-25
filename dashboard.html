@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>🚀 XN Control Center</title>
+    <meta charset="UTF-8">
+    <style>
+        body { 
+            font-family: "Arial", sans-serif; 
+            margin: 0; 
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            min-height: 100vh;
+        }
+        .dashboard {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+        .stat-card {
+            background: rgba(255,255,255,0.1);
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+        }
+        .stat-number {
+            font-size: 2.5em;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+        .systems-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        .system-card {
+            background: rgba(255,255,255,0.15);
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 5px solid #4CAF50;
+        }
+        .api-status {
+            background: rgba(76, 175, 80, 0.3);
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 20px;
+            text-align: center;
+        }
+        .refresh-btn {
+            background: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard">
+        <div class="header">
+            <h1>🚀 XN CONTROL CENTER</h1>
+            <p>Sistema de Monitorización en Tiempo Real</p>
+        </div>
+
+        <div class="stats">
+            <div class="stat-card">
+                <div>📊 Repositorios</div>
+                <div class="stat-number" id="repo-count">9</div>
+                <div>Sistemas Activos</div>
+            </div>
+            <div class="stat-card">
+                <div>💻 Lenguajes</div>
+                <div class="stat-number">6</div>
+                <div>Tecnologías</div>
+            </div>
+            <div class="stat-card">
+                <div>🤖 Enjambre</div>
+                <div class="stat-number">150%</div>
+                <div>Operatividad</div>
+            </div>
+            <div class="stat-card">
+                <div>🌐 API</div>
+                <div class="stat-number">🟢</div>
+                <div>Status: ONLINE</div>
+            </div>
+        </div>
+
+        <div class="systems-grid" id="systems-container">
+            <!-- Los sistemas se cargarán con JavaScript -->
+        </div>
+
+        <div class="api-status">
+            <p>📡 API Endpoint: <code>http://127.0.0.1:5000</code></p>
+            <button class="refresh-btn" onclick="loadData()">🔄 Actualizar Datos</button>
+            <span id="last-update"></span>
+        </div>
+    </div>
+
+    <script>
+        async function loadData() {
+            try {
+                // Cargar datos de la API
+                const response = await fetch("http://127.0.0.1:5000/sistemas");
+                const data = await response.json();
+                
+                // Actualizar interfaz
+                document.getElementById("repo-count").textContent = data.repositorios;
+                
+                // Actualizar timestamp
+                document.getElementById("last-update").textContent = 
+                    "Última actualización: " + new Date().toLocaleTimeString();
+                
+                console.log("Datos cargados:", data);
+                
+            } catch (error) {
+                console.error("Error cargando datos:", error);
+                document.getElementById("last-update").textContent = 
+                    "Error conectando a la API";
+            }
+        }
+
+        // Sistemas predefinidos
+        const sistemas = [
+            { nombre: "🏗️ Arquitectura XN", estado: "ACTIVO", desc: "Sistemas empresariales v1.0.0" },
+            { nombre: "🤖 Sistemas Enjambre", estado: "ACTIVO", desc: "150% operatividad - 6 aliados" },
+            { nombre: "📦 Paquetes XN", estado: "ACTIVO", desc: "Node.js + Python modules" },
+            { nombre: "🔧 Algoritmos Python", estado: "ACTIVO", desc: "3 scripts de análisis" },
+            { nombre: "🦀 Mi Proyecto Rust", estado: "ACTIVO", desc: "Análisis económico" },
+            { nombre: "📱 Analizador Termux", estado: "ACTIVO", desc: "Herramientas Shell" },
+            { nombre: "🐍 Proyecto Python", estado: "ACTIVO", desc: "Experimentos y aprendizaje" },
+            { nombre: "📁 Workspace Clean", estado: "ACTIVO", desc: "Proyectos organizados" },
+            { nombre: "🎓 Mis Proyectos", estado: "ACTIVO", desc: "Aprendizaje Git - PÚBLICO" }
+        ];
+
+        // Renderizar sistemas
+        function renderSystems() {
+            const container = document.getElementById("systems-container");
+            container.innerHTML = sistemas.map(system => `
+                <div class="system-card">
+                    <h3>${system.nombre}</h3>
+                    <p>${system.desc}</p>
+                    <div style="color: #4CAF50;">🟢 ${system.estado}</div>
+                </div>
+            `).join("");
+        }
+
+        // Inicializar
+        renderSystems();
+        loadData();
+        
+        // Actualizar cada 30 segundos
+        setInterval(loadData, 30000);
+    </script>
+</body>
+</html>
